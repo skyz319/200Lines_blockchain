@@ -83,10 +83,10 @@ func isBlockValid(newBlock, oldBlock Block) bool {
 	链合并，以最长链为有效链
 */
 
-func replaceChain(newBlock []Block) {
+func replaceChain(newBlockchain []Block) {
 
-	if len(newBlock) > len(Blockchain) {
-		Blockchain = newBlock
+	if len(newBlockchain) > len(Blockchain) {
+		Blockchain = newBlockchain
 	}
 }
 
@@ -188,10 +188,11 @@ func main() {
 	go func() {
 		t := time.Now()
 		//	创世区块
-		genesisBlock := Block{0, t.String(), 0, "", ""}
+		genesisBlock := Block{0, t.String(), 0, "", "Genesis!"}
 		hash := calculateHash(genesisBlock) //	生成创世区块Hash
 		genesisBlock.Hash = hash
 		spew.Dump(genesisBlock)
+		//	上链
 		Blockchain = append(Blockchain, genesisBlock)
 	}()
 
